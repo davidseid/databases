@@ -1,11 +1,25 @@
-var db = require('../db');
+var db = require('../db/index.js');
 
 module.exports = {
   messages: {
     get: function () {
-      db.query(queryString, queryArgs, callback);
-    }, // a function which produces all the messages
-    post: function () {} // a function which can be used to insert a message into the database
+      // a function which produces all the messages
+      return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM messages', (err, rows, fields) => {
+          if (err) {
+            reject(err);
+          }
+          
+          // console.log('ROWS: ', rows);
+          // console.log(typeof rows[0].message_text);
+          resolve(rows);
+        });
+      });
+    }, 
+    post: function () {
+      // a function which can be used to insert a message into the database
+      
+    } 
   },
 
   users: {
@@ -15,3 +29,4 @@ module.exports = {
   }
 };
 
+module.exports.messages.get();
