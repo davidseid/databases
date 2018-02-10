@@ -1,4 +1,6 @@
--- CREATE DATABASE chat;
+DROP DATABASE IF EXISTS 'chat';
+
+CREATE DATABASE chat;
 
 USE chat;
 
